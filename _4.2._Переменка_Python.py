@@ -196,5 +196,92 @@ def arrayInt(h1,ph1,h2,ph2):
     return array
 
 uAD = arrayInt(Umh1AD, ph1UAD, Umh2AD, ph2UAD)
+uCD = arrayInt(Umh1CD, ph1UCD, Umh2CD, ph2UCD)
+uAB = arrayInt(Umh1AB, ph1UAB, Umh2AB, ph2UAB)
+uBE = arrayInt(Umh1BE, ph1UBE, Umh2BE, ph2UBE)
+uEC = arrayInt(Umh1EC, ph1UEC, Umh2EC, ph2UEC)
+uL2 = arrayInt(Umh1L2, ph1UL2, Umh2L2, ph2UL2)
+uC11 = arrayInt(Umh1C11, ph1UC11, Umh2C11, ph2UC11)
+uC12 = arrayInt(Umh1C12, ph1UC12, Umh2C12, ph2UC12)
 
-print(uAD)
+iB1 = arrayInt(Imh1B1, ph1IB1, Imh2B1, ph2IB1)
+iB2 = arrayInt(Imh1B2, ph1IB2, Imh2B2, ph2IB2)
+iB3 = arrayInt(Imh1B3, ph1IB3, Imh2B3, ph2IB3)
+iB4 = arrayInt(Imh1B4, ph1IB4, Imh2B4, ph2IB4)
+iB5 = arrayInt(Imh1B5, ph1IB5, Imh2B5, ph2IB5)
+iB6 = arrayInt(Imh1B6, ph1IB6, Imh2B6, ph2IB6)
+iB7 = arrayInt(Imh1B7, ph1IB7, Imh2B7, ph2IB7)
+
+# Вычисление действующих значений
+U_AD_RMS = cmath.sqrt(1./T * integral2(uAD, 0., T))
+U_CD_RMS = cmath.sqrt(1./T * integral2(uCD, 0., T))
+U_AB_RMS = cmath.sqrt(1./T * integral2(uAB, 0., T))
+U_BE_RMS = cmath.sqrt(1./T * integral2(uBE, 0., T))
+U_EC_RMS = cmath.sqrt(1./T * integral2(uEC, 0., T))
+U_L2_RMS = cmath.sqrt(1./T * integral2(uL2, 0., T))
+U_C11_RMS = cmath.sqrt(1./T * integral2(uC11, 0., T))
+U_C12_RMS = cmath.sqrt(1./T * integral2(uC12, 0., T))
+        
+IB1_RMS = cmath.sqrt(1./T * integral2(iB1, 0., T))
+IB2_RMS = cmath.sqrt(1./T * integral2(iB2, 0., T))
+IB3_RMS = cmath.sqrt(1./T * integral2(iB3, 0., T))
+IB4_RMS = cmath.sqrt(1./T * integral2(iB4, 0., T))
+IB5_RMS = cmath.sqrt(1./T * integral2(iB5, 0., T))
+IB6_RMS = cmath.sqrt(1./T * integral2(iB6, 0., T))
+IB7_RMS = cmath.sqrt(1./T * integral2(iB7, 0., T))
+
+# Вычисление максимальных значений
+UmAD = max(uAD)
+UmCD = max(uCD)
+UmAB = max(uAB)
+UmBE = max(uBE)
+UmEC = max(uEC)
+UmL2 = max(uL2)
+UmC11 = max(uC11)
+UmC12 = max(uC12)
+
+ImB1 = max(iB1)
+ImB2 = max(iB2)
+ImB3 = max(iB3)
+ImB4 = max(iB4)
+ImB5 = max(iB5)
+ImB6 = max(iB6)
+ImB7 = max(iB7)
+
+# Вычисление методом наложения
+UcplxAD = Uh1cplx + Uh2cplx
+UcplxCD = Uh1cplxCD + Uh2cplxCD
+UcplxAB = Uh1cplxAB + Uh2cplxAB
+UcplxBE = Uh1cplxBE + Uh2cplxBE
+UcplxEC = Uh1cplxEC + Uh2cplxEC
+UcplxL2 = Uh1cplxL2 + Uh2cplxL2
+UcplxC11 = Uh1cplxC11 + Uh2cplxC11
+UcplxC12 = Uh1cplxC12 + Uh2cplxC12
+        
+IcplxB1 = Ih1cplx + Ih2cplx
+IcplxB2 = Ih1cplxL3 + Ih2cplxL3
+IcplxB3 = Ih1cplxBE + Ih2cplxBE
+IcplxB4 = Ih1cplxZ4 + Ih2cplxZ4
+IcplxB5 = Ih1cplxZ2 + Ih2cplxZ2
+IcplxB6 = Ih1cplxR2C2 + Ih2cplxR2C2
+IcplxB7 = Ih1cplxZ3 + Ih2cplxZ3
+
+# Вычисление углов фаз
+pUAD = math.degrees(cmath.phase(UcplxAD))
+pUAB = math.degrees(cmath.phase(UcplxAB))
+pUBE = math.degrees(cmath.phase(UcplxBE))
+pUEC = math.degrees(cmath.phase(UcplxEC))
+pUCD = math.degrees(cmath.phase(UcplxCD))
+pUL2 = math.degrees(cmath.phase(UcplxL2))
+pUC11 = math.degrees(cmath.phase(UcplxC11))
+pUC12 = math.degrees(cmath.phase(UcplxC12))
+        
+pIB1 = math.degrees(cmath.phase(IcplxB1))
+pIB2 = math.degrees(cmath.phase(IcplxB2))
+pIB3 = math.degrees(cmath.phase(IcplxB3))
+pIB4 = math.degrees(cmath.phase(IcplxB4))
+pIB5 = math.degrees(cmath.phase(IcplxB5))
+pIB6 = math.degrees(cmath.phase(IcplxB6))
+pIB7 = math.degrees(cmath.phase(IcplxB7))
+
+print(pUAB)
