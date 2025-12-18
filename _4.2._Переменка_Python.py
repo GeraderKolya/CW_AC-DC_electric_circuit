@@ -3,8 +3,6 @@ import numpy as np
 import cmath
 import math
 
-
-
 # Исходные данные
 R = np.array([60., 5., 10., 0., 300.])
 C = np.array([3000.e-6, 800.e-6, 2400.e-6])
@@ -35,9 +33,7 @@ Z8 = (Z4 * Z5)/(Z4 + Z5)
 Z9 = (ZL[2] * Z3)/(ZL[2] + Z3)
 
 Z10 = Z7 + Z8
-        
 Z11 = (Z10 * Z9)/(Z10 + Z9)
-        
 Zeq = ZL[2] + Z11 + Z6
 
 # Расчёт для первой гармоники
@@ -83,9 +79,7 @@ Z8 = (Z4 * Z5)/(Z4 + Z5)
 Z9 = (ZL[2] * Z3)/(ZL[2] + Z3)
 
 Z10 = Z7 + Z8
-        
 Z11 = (Z10 * Z9)/(Z10 + Z9)
-        
 Zeq = ZL[2] + Z11 + Z6
 
 # Расчёт для второй гармоники
@@ -173,7 +167,6 @@ ph2UEC = cmath.phase(Uh2cplxEC)
 ph2UL2 = cmath.phase(Uh2cplxL2)
 ph2UC11 = cmath.phase(Uh2cplxC11)
 ph2UC12 = cmath.phase(Uh2cplxC12)
-
 ph2IB1 = cmath.phase(Ih2cplx)
 ph2IB2 = cmath.phase(Ih2cplxL3)
 ph2IB3 = cmath.phase(Ih2cplxBE)
@@ -181,7 +174,5 @@ ph2IB4 = cmath.phase(Ih2cplxZ4)
 ph2IB5 = cmath.phase(Ih2cplxZ2)
 ph2IB6 = cmath.phase(Ih2cplxR2C2)
 ph2IB7 = cmath.phase(Ih2cplxZ3)
-
-
 
 print(ph2IB7)
