@@ -175,4 +175,26 @@ ph2IB5 = cmath.phase(Ih2cplxZ2)
 ph2IB6 = cmath.phase(Ih2cplxR2C2)
 ph2IB7 = cmath.phase(Ih2cplxZ3)
 
-print(ph2IB7)
+# Функция вычисления интеграла с подынтегральным выражением в квадрате
+def integral2(array, beg, end):
+    l = (end - beg)/100
+    sum = 0
+
+    for i in range(99):
+        sum = sum + l * array[i] ** 2
+    return sum
+
+# Функция вычисления массива данных для интеграла
+def arrayInt(h1,ph1,h2,ph2):
+    l = T/100
+    x = 0
+    array = np.zeros(100)
+
+    for i in range(99):
+        x = l * i
+        array[i] = h1*math.sin(wh1*x + ph1) + h2*math.sin(wh2*x + ph2) 
+    return array
+
+uAD = arrayInt(Umh1AD, ph1UAD, Umh2AD, ph2UAD)
+
+print(uAD)
