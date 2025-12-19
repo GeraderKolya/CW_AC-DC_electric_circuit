@@ -316,6 +316,18 @@ print_value('I_B6', ImB6, IB6_RMS, pIB6)
 print_value('I_B7', ImB7, IB7_RMS, pIB7)
 
 # Вывод данных для построения графика в Excel
+# Вывод всех напряжений
+with open("voltages_python.txt", "w", encoding="utf-8") as f:
+    f.write("uAD uAB uBE uEC uCD uL2 uC11 uC12\n")
 
+    for i in range(100):
+        f.write(f"{uAD[i]:.6f} {uAB[i]:.6f} {uBE[i]:.6f} {uEC[i]:.6f} {uCD[i]:.6f} {uL2[i]:.6f} {uC11[i]:.6f} {uC12[i]:.6f}\n".replace(".", ","))
+
+# Вывод всех токов
+with open("currents_python.txt", "w", encoding="utf-8") as f:
+    f.write("iB1 iB2 iB3 iB4 iB5 iB6 iB7\n")
+
+    for i in range(100):
+        f.write(f"{iB1[i]:.6f} {iB2[i]:.6f} {iB3[i]:.6f} {iB4[i]:.6f} {iB5[i]:.6f} {iB6[i]:.6f} {iB7[i]:.6f}\n".replace(".", ","))
 
 print()
