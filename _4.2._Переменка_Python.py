@@ -2,6 +2,7 @@
 import numpy as np
 import cmath
 import math
+import matplotlib.pyplot as plt
 
 # Исходные данные
 R = np.array([60., 5., 10., 0., 300.])
@@ -190,7 +191,7 @@ def arrayInt(h1,ph1,h2,ph2):
     x = 0
     array = np.zeros(100)
 
-    for i in range(99):
+    for i in range(100):
         x = l * i
         array[i] = h1*math.sin(wh1*x + ph1) + h2*math.sin(wh2*x + ph2) 
     return array
@@ -284,4 +285,12 @@ pIB5 = math.degrees(cmath.phase(IcplxB5))
 pIB6 = math.degrees(cmath.phase(IcplxB6))
 pIB7 = math.degrees(cmath.phase(IcplxB7))
 
-print(pUAB)
+# Вывод графиков
+tvec = np.linspace(0.,T,100)
+y = [2, 4, 6, 8]
+plt.plot(tvec, uAD, tvec, uAB, tvec, uBE, tvec, uEC, tvec, uCD)
+plt.legend(loc=['outside lower left', 'outside upper right'], label=['TEST1', 'TEST2','TEST3','TEST4','TEST5'])
+plt.grid(True)
+plt.show()
+
+print()
