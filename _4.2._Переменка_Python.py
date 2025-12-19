@@ -2,7 +2,6 @@
 import numpy as np
 import cmath
 import math
-import matplotlib.pyplot as plt
 
 # Исходные данные
 R = np.array([60., 5., 10., 0., 300.])
@@ -214,22 +213,22 @@ iB6 = arrayInt(Imh1B6, ph1IB6, Imh2B6, ph2IB6)
 iB7 = arrayInt(Imh1B7, ph1IB7, Imh2B7, ph2IB7)
 
 # Вычисление действующих значений
-U_AD_RMS = cmath.sqrt(1./T * integral2(uAD, 0., T))
-U_CD_RMS = cmath.sqrt(1./T * integral2(uCD, 0., T))
-U_AB_RMS = cmath.sqrt(1./T * integral2(uAB, 0., T))
-U_BE_RMS = cmath.sqrt(1./T * integral2(uBE, 0., T))
-U_EC_RMS = cmath.sqrt(1./T * integral2(uEC, 0., T))
-U_L2_RMS = cmath.sqrt(1./T * integral2(uL2, 0., T))
-U_C11_RMS = cmath.sqrt(1./T * integral2(uC11, 0., T))
-U_C12_RMS = cmath.sqrt(1./T * integral2(uC12, 0., T))
+U_AD_RMS = math.sqrt(1./T * integral2(uAD, 0., T))
+U_CD_RMS = math.sqrt(1./T * integral2(uCD, 0., T))
+U_AB_RMS = math.sqrt(1./T * integral2(uAB, 0., T))
+U_BE_RMS = math.sqrt(1./T * integral2(uBE, 0., T))
+U_EC_RMS = math.sqrt(1./T * integral2(uEC, 0., T))
+U_L2_RMS = math.sqrt(1./T * integral2(uL2, 0., T))
+U_C11_RMS = math.sqrt(1./T * integral2(uC11, 0., T))
+U_C12_RMS = math.sqrt(1./T * integral2(uC12, 0., T))
         
-IB1_RMS = cmath.sqrt(1./T * integral2(iB1, 0., T))
-IB2_RMS = cmath.sqrt(1./T * integral2(iB2, 0., T))
-IB3_RMS = cmath.sqrt(1./T * integral2(iB3, 0., T))
-IB4_RMS = cmath.sqrt(1./T * integral2(iB4, 0., T))
-IB5_RMS = cmath.sqrt(1./T * integral2(iB5, 0., T))
-IB6_RMS = cmath.sqrt(1./T * integral2(iB6, 0., T))
-IB7_RMS = cmath.sqrt(1./T * integral2(iB7, 0., T))
+IB1_RMS = math.sqrt(1./T * integral2(iB1, 0., T))
+IB2_RMS = math.sqrt(1./T * integral2(iB2, 0., T))
+IB3_RMS = math.sqrt(1./T * integral2(iB3, 0., T))
+IB4_RMS = math.sqrt(1./T * integral2(iB4, 0., T))
+IB5_RMS = math.sqrt(1./T * integral2(iB5, 0., T))
+IB6_RMS = math.sqrt(1./T * integral2(iB6, 0., T))
+IB7_RMS = math.sqrt(1./T * integral2(iB7, 0., T))
 
 # Вычисление максимальных значений
 UmAD = max(uAD)
@@ -285,12 +284,38 @@ pIB5 = math.degrees(cmath.phase(IcplxB5))
 pIB6 = math.degrees(cmath.phase(IcplxB6))
 pIB7 = math.degrees(cmath.phase(IcplxB7))
 
-# Вывод графиков
-tvec = np.linspace(0.,T,100)
-y = [2, 4, 6, 8]
-plt.plot(tvec, uAD, tvec, uAB, tvec, uBE, tvec, uEC, tvec, uCD)
-plt.legend(loc=['outside lower left', 'outside upper right'], label=['TEST1', 'TEST2','TEST3','TEST4','TEST5'])
-plt.grid(True)
-plt.show()
+# Функции для вывода
+def print_row():
+    print("+------------+-------------------------+------------------------+-----------+")
+    print("|","Параметр","|","Максимальное значение","|","Действующее значение","|", "Угол, °","|", sep='  ')
+    print("+------------+-------------------------+------------------------+-----------+")
+    return
+
+def print_value(name, max_val, rms, ang):
+    print("|",f"{name:^12}","|",f"{max_val:^25.6f}","|",f"{rms:^24.6f}","|",f"{ang:^11.2f}","|", sep='')
+    print("+------------+-------------------------+------------------------+-----------+")
+    return
+
+# Вывод таблицы значений
+print_row()
+print_value('U_AD', UmAD, U_AD_RMS, pUAD)
+print_value('U_AB', UmAB, U_AB_RMS, pUAB)
+print_value('U_BE', UmBE, U_BE_RMS, pUBE)
+print_value('U_EC', UmEC, U_EC_RMS, pUEC)
+print_value('U_CD', UmCD, U_CD_RMS, pUCD)
+print_value('U_L2', UmL2, U_L2_RMS, pUL2)
+print_value('U_C11', UmC11, U_C11_RMS, pUC11)
+print_value('U_C12', UmC12, U_C12_RMS, pUC12)
+        
+print_value('I_B1', ImB1, IB1_RMS, pIB1)
+print_value('I_B2', ImB2, IB2_RMS, pIB2)
+print_value('I_B3', ImB3, IB3_RMS, pIB3)
+print_value('I_B4', ImB4, IB4_RMS, pIB4)
+print_value('I_B5', ImB5, IB5_RMS, pIB5)
+print_value('I_B6', ImB6, IB6_RMS, pIB6)
+print_value('I_B7', ImB7, IB7_RMS, pIB7)
+
+# Вывод данных для построения графика в Excel
+
 
 print()
