@@ -24,7 +24,7 @@ E2  = 105
 # Вычисление собственных сопротивлений контуров
 r = np.zeros((6, 6))
 r[0][0] = R41 + R15 + R45
-r[1][1] = R12 + R15 + R56 + R67
+r[1][1] = R12 + R15 + R56 + R67 + R72
 r[2][2] = R45 + R56 + R69 + R49
 r[3][3] = R69 + R67 + R97
 r[4][4] = R34 + R49 + R97 + R72 + R82 + R83
@@ -58,12 +58,37 @@ r[5][4] = r[4][5]
 
 # Расчёт контурных ЭДС
 Ek = np.zeros(6)
-Ek[2] = E1
-Ek[3] = E2
-Ek[5] = -E2
-Ek[4] = -E1
-Ek[6] = 0
+Ek[1] = E1
+Ek[2] = E2
+Ek[4] = -E2
+Ek[3] = -E1
+Ek[5] = 0
 
+# Метод Зейделя
+def sysEqSolver(A, b, x0=None, eps=1e-6, max_iter=10000):
+    A = np.array(A, dtype=float)
+    b = np.array(b, dtype=float)
+    n = A.shape[0]
+    if x0 is None:
+        x = np.zeros(n, dtype=float)
+    else:
+        x = np.array(x0, dtype=float)
 
+    # Проверка диагональных элементов
+    if np.any(np.isclose(np.diag(A), 0.0)):
+        raise ValueError("На диагонали есть нули — метод неприменим без перестановок.")
 
-print(r)
+    for k in range(max_iter):
+        x_old = x.copy()
+        for i in range(n):
+            s1 = np.dot(A[i, :i], x[:i])          # уже обновлённые значения
+            s2 = np.dot(A[i, i+1:], x_old[i+1:])  # старые значения
+            x[i] = (b[i] - s1 - s2) / A[i, i]
+        # критерий остановки (макс. норма)
+        if np.max(np.abs(x - x_old)) < eps:
+            return x
+    raise RuntimeError("Не сошлось за max_iter итераций")
+
+x = sysEqSolver(r, Ek)
+
+print(x)
