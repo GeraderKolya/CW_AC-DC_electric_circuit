@@ -1,6 +1,5 @@
 ﻿# Импорт необходимых модулей
 import numpy as np
-import cmath
 import math
 
 # Исходные данные
