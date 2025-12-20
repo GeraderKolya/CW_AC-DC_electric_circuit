@@ -89,6 +89,39 @@ def sysEqSolver(A, b, x0=None, eps=1e-6, max_iter=10000):
             return x
     raise RuntimeError("Не сошлось за max_iter итераций")
 
-x = sysEqSolver(r, Ek)
+# Решение системы
+Ik = sysEqSolver(r, Ek)
 
-print(x)
+# Вычисление токов в ветвях
+I12 = Ik[1]
+I23 = -Ik[5]
+I34 = -Ik[4]
+I41 = Ik[0]
+I15 = Ik[1] - Ik[0]
+I45 = Ik[2] - Ik[0]
+I49 = Ik[2] - Ik[4]
+I56 = Ik[2] - Ik[1]
+I67 = Ik[1] - Ik[3]
+I69 = Ik[2] - Ik[3]
+I97 = Ik[4] - Ik[3]
+I72 = Ik[1] - Ik[4]
+I82 = Ik[5] - Ik[4]
+I83 = Ik[5] - Ik[4]
+
+# Вычисление Напряжений на элементах
+U12 = I12 * R12
+U23 = I23 * R23
+U34 = I34 * R34
+U41 = I41 * R41
+U15 = I15 * R15
+U45 = I45 * R45
+U49 = I49 * R49
+U56 = I56 * R56
+U67 = I67 * R67
+U69 = I69 * R69
+U97 = I97 * R97
+U72 = I72 * R72
+U82 = I82 * R82
+U83 = I83 * R83
+
+print()
