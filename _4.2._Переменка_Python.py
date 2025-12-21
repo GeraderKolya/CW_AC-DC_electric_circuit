@@ -329,5 +329,3 @@ with open("currents_python.txt", "w", encoding="utf-8") as f:
 
     for i in range(100):
         f.write(f"{iB1[i]:.6f} {iB2[i]:.6f} {iB3[i]:.6f} {iB4[i]:.6f} {iB5[i]:.6f} {iB6[i]:.6f} {iB7[i]:.6f}\n".replace(".", ","))
-
-print()
