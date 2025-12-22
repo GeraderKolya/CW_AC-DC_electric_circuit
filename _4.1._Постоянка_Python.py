@@ -64,14 +64,11 @@ Ek[3] = -E1
 Ek[5] = 0
 
 # Метод Зейделя
-def sysEqSolver(A, b, x0=None, eps=1e-6, max_iter=10000):
+def sysEqSolver(A, b, eps=1e-6, max_iter=10000):
     A = np.array(A, dtype=float)
     b = np.array(b, dtype=float)
     n = A.shape[0]
-    if x0 is None:
-        x = np.zeros(n, dtype=float)
-    else:
-        x = np.array(x0, dtype=float)
+    x = np.zeros(n, dtype=float)
 
     # Проверка диагональных элементов
     if np.any(np.isclose(np.diag(A), 0.0)):
